@@ -75,11 +75,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { title: "CICOIDAF — Cercle des Œuvres pour les Initiatives de Développement Africain" },
       { name: "description", content: "Portail officiel du CICOIDAF : conférences internationales, événements et initiatives pour l'émergence du continent africain." },
       { name: "author", content: "CICOIDAF" },
-      { property: "og:title", content: "CICOIDAF — Conférence Internationale" },
-      { property: "og:description", content: "Le moteur de vos initiatives pour l'Afrique. Édition 2026 — L'émergence africaine en marche." },
+      { property: "og:title", content: "CICOIDAF — Cercle des Œuvres pour les Initiatives de Développement Africain" },
+      { property: "og:description", content: "Portail officiel du CICOIDAF : conférences internationales, événements et initiatives pour l'émergence du continent africain." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "CICOIDAF — Cercle des Œuvres pour les Initiatives de Développement Africain" },
+      { name: "twitter:description", content: "Portail officiel du CICOIDAF : conférences internationales, événements et initiatives pour l'émergence du continent africain." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/803bd8e7-fd62-4ca3-83f6-8a0e2d167f79/id-preview-14946057--696c4683-6588-42d5-a161-7ee46c36f829.lovable.app-1778875178798.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/803bd8e7-fd62-4ca3-83f6-8a0e2d167f79/id-preview-14946057--696c4683-6588-42d5-a161-7ee46c36f829.lovable.app-1778875178798.png" },
     ],
     links: [
       {
