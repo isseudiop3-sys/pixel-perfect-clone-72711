@@ -16,7 +16,7 @@ export function Footer() {
   return (
     <footer className="relative text-white/85 mt-0 isolate">
       <img src={bg} alt="" className="absolute inset-0 w-full h-full object-cover -z-10" loading="lazy" />
-      <div className="absolute inset-0 bg-[oklch(0.18_0.01_0)]/88 -z-10" />
+      <div className="absolute inset-0 bg-black/65 -z-10" />
       <div className="container-x py-14 grid gap-10 md:grid-cols-4">
         <div className="md:col-span-2">
           <img src={logo} alt="CICOIDAF" className="h-14 w-auto bg-white p-2 rounded" />
@@ -67,7 +67,7 @@ export function Footer() {
       <div className="border-t border-white/10 py-5 relative">
         <div className="container-x text-xs text-white/60 flex flex-wrap gap-2 justify-between">
           <span>© {new Date().getFullYear()} CICOIDAF tous droits reservé — Le CICOIDAF est un bien privé enrigistré du COIDAF INTL.</span>
-          <span>Édition 2026 — L'émergence africaine en marche</span>
+          <span>Édition 2026 — Le développement africain en marche</span>
         </div>
       </div>
     </footer>
