@@ -10,8 +10,10 @@ const NAV = [
   { to: "/evenements", label: "Événements" },
   { to: "/calendriers", label: "Calendriers" },
   { to: "/themes", label: "Thèmes" },
+  { to: "/actualite", label: "Actualité" },
   { to: "/partenaires", label: "Partenaires" },
   { to: "/contacts", label: "Contacts" },
+  { to: "/faire-un-don", label: "Faire un don" },
 ] as const;
 
 export function Header() {
