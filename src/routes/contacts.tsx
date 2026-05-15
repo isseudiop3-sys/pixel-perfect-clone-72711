@@ -1,9 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { MapPin, Phone, Mail, Send, CheckCircle2 } from "lucide-react";
+import { MapPin, Phone, Mail, Send, CheckCircle2, MessageCircle } from "lucide-react";
 import { PageBanner } from "@/components/site/PageBanner";
 import { FinalCta } from "@/components/site/FinalCta";
-import banner from "@/assets/photo-networking.jpg";
+import banner from "@/assets/contact-hero.jpg";
 
 export const Route = createFileRoute("/contacts")({
   head: () => ({
@@ -50,6 +50,16 @@ function ContactsPage() {
               <p className="text-ink/75 text-sm">coidaforganisation@gmail.com</p>
               <p className="text-ink/75 text-sm">cicoidaf-conference@gmail.com</p>
             </div>
+
+            <a
+              href="https://wa.me/33766113647?text=Bonjour%2C%20je%20souhaite%20%C3%A9changer%20avec%20votre%20conseiller%20client%20IA."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-3 p-4 rounded-lg bg-[#25D366] text-white font-semibold hover:opacity-95 transition shadow-lg"
+            >
+              <MessageCircle size={22} />
+              <span>Discuter avec notre conseiller client IA sur WhatsApp</span>
+            </a>
           </div>
 
           <div className="lg:col-span-3">

@@ -22,10 +22,10 @@ function HomePage() {
         <img src={hero} alt="Conférence CICOIDAF" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/55 to-[rgba(139,0,0,0.7)]" />
         <div className="relative container-x py-28 md:py-40 text-white text-center">
-          <p className="font-script text-3xl text-white/90 mb-4">
+          <p className="font-script text-5xl md:text-7xl text-white leading-tight mb-4">
             « Plus vous apprenez, plus vous découvrirez d'endroits. »
           </p>
-          <p className="text-sm uppercase tracking-[0.3em] text-white/70 mb-6">— Dr. Seuss</p>
+          <p className="font-script text-3xl md:text-4xl text-white/90 mb-6">— Dr. Seuss</p>
           <h1 className="font-display text-4xl md:text-6xl font-bold leading-tight max-w-4xl mx-auto text-white">
             Bienvenue sur le Portail CICOIDAF —<br />
             <span className="text-[oklch(0.85_0.12_27)]">le moteur de vos initiatives pour l'Afrique.</span>
@@ -60,7 +60,7 @@ function HomePage() {
       <section className="py-24">
         <div className="container-x grid lg:grid-cols-2 gap-12 items-center">
           <div>
-            <p className="section-eyebrow tracking-[0.4em]">N O T R E&nbsp;&nbsp;P L A T E F O R M E</p>
+            <p className="font-script text-4xl md:text-5xl text-primary leading-tight">Notre plateforme</p>
             <h2 className="section-title mt-3">L'outil de référence des administrations francophones</h2>
             <p className="text-ink/80 leading-relaxed text-lg italic border-l-4 border-primary pl-5">
               « La plateforme CICOIDAF est l'outil de référence dédié à la communauté des administrations francophones.
@@ -136,7 +136,7 @@ function HomePage() {
         <div className="container-x text-center">
           <p className="section-eyebrow">À découvrir en vidéo</p>
           <h2 className="section-title mt-3 mb-8">CICOIDAF — Portail des Initiatives de Développement Africain</h2>
-          <div className="aspect-video max-w-4xl mx-auto rounded-xl overflow-hidden shadow-2xl">
+          <div className="aspect-video max-w-2xl mx-auto rounded-xl overflow-hidden shadow-2xl">
             <iframe
               className="w-full h-full"
               src="https://www.youtube.com/embed/-INOP-DRj-s"
