@@ -9,8 +9,62 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ThemesRouteImport } from './routes/themes'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as PartenairesRouteImport } from './routes/partenaires'
+import { Route as InscriptionRouteImport } from './routes/inscription'
+import { Route as EvenementsRouteImport } from './routes/evenements'
+import { Route as ContactsRouteImport } from './routes/contacts'
+import { Route as ConferencesRouteImport } from './routes/conferences'
+import { Route as CalendriersRouteImport } from './routes/calendriers'
+import { Route as AProposRouteImport } from './routes/a-propos'
 import { Route as IndexRouteImport } from './routes/index'
 
+const ThemesRoute = ThemesRouteImport.update({
+  id: '/themes',
+  path: '/themes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PartenairesRoute = PartenairesRouteImport.update({
+  id: '/partenaires',
+  path: '/partenaires',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InscriptionRoute = InscriptionRouteImport.update({
+  id: '/inscription',
+  path: '/inscription',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EvenementsRoute = EvenementsRouteImport.update({
+  id: '/evenements',
+  path: '/evenements',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactsRoute = ContactsRouteImport.update({
+  id: '/contacts',
+  path: '/contacts',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConferencesRoute = ConferencesRouteImport.update({
+  id: '/conferences',
+  path: '/conferences',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CalendriersRoute = CalendriersRouteImport.update({
+  id: '/calendriers',
+  path: '/calendriers',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AProposRoute = AProposRouteImport.update({
+  id: '/a-propos',
+  path: '/a-propos',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +73,158 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/a-propos': typeof AProposRoute
+  '/calendriers': typeof CalendriersRoute
+  '/conferences': typeof ConferencesRoute
+  '/contacts': typeof ContactsRoute
+  '/evenements': typeof EvenementsRoute
+  '/inscription': typeof InscriptionRoute
+  '/partenaires': typeof PartenairesRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/themes': typeof ThemesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/a-propos': typeof AProposRoute
+  '/calendriers': typeof CalendriersRoute
+  '/conferences': typeof ConferencesRoute
+  '/contacts': typeof ContactsRoute
+  '/evenements': typeof EvenementsRoute
+  '/inscription': typeof InscriptionRoute
+  '/partenaires': typeof PartenairesRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/themes': typeof ThemesRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/a-propos': typeof AProposRoute
+  '/calendriers': typeof CalendriersRoute
+  '/conferences': typeof ConferencesRoute
+  '/contacts': typeof ContactsRoute
+  '/evenements': typeof EvenementsRoute
+  '/inscription': typeof InscriptionRoute
+  '/partenaires': typeof PartenairesRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/themes': typeof ThemesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/a-propos'
+    | '/calendriers'
+    | '/conferences'
+    | '/contacts'
+    | '/evenements'
+    | '/inscription'
+    | '/partenaires'
+    | '/sitemap.xml'
+    | '/themes'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/a-propos'
+    | '/calendriers'
+    | '/conferences'
+    | '/contacts'
+    | '/evenements'
+    | '/inscription'
+    | '/partenaires'
+    | '/sitemap.xml'
+    | '/themes'
+  id:
+    | '__root__'
+    | '/'
+    | '/a-propos'
+    | '/calendriers'
+    | '/conferences'
+    | '/contacts'
+    | '/evenements'
+    | '/inscription'
+    | '/partenaires'
+    | '/sitemap.xml'
+    | '/themes'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AProposRoute: typeof AProposRoute
+  CalendriersRoute: typeof CalendriersRoute
+  ConferencesRoute: typeof ConferencesRoute
+  ContactsRoute: typeof ContactsRoute
+  EvenementsRoute: typeof EvenementsRoute
+  InscriptionRoute: typeof InscriptionRoute
+  PartenairesRoute: typeof PartenairesRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  ThemesRoute: typeof ThemesRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/themes': {
+      id: '/themes'
+      path: '/themes'
+      fullPath: '/themes'
+      preLoaderRoute: typeof ThemesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/partenaires': {
+      id: '/partenaires'
+      path: '/partenaires'
+      fullPath: '/partenaires'
+      preLoaderRoute: typeof PartenairesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/inscription': {
+      id: '/inscription'
+      path: '/inscription'
+      fullPath: '/inscription'
+      preLoaderRoute: typeof InscriptionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/evenements': {
+      id: '/evenements'
+      path: '/evenements'
+      fullPath: '/evenements'
+      preLoaderRoute: typeof EvenementsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contacts': {
+      id: '/contacts'
+      path: '/contacts'
+      fullPath: '/contacts'
+      preLoaderRoute: typeof ContactsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/conferences': {
+      id: '/conferences'
+      path: '/conferences'
+      fullPath: '/conferences'
+      preLoaderRoute: typeof ConferencesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/calendriers': {
+      id: '/calendriers'
+      path: '/calendriers'
+      fullPath: '/calendriers'
+      preLoaderRoute: typeof CalendriersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/a-propos': {
+      id: '/a-propos'
+      path: '/a-propos'
+      fullPath: '/a-propos'
+      preLoaderRoute: typeof AProposRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,17 +237,16 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AProposRoute: AProposRoute,
+  CalendriersRoute: CalendriersRoute,
+  ConferencesRoute: ConferencesRoute,
+  ContactsRoute: ContactsRoute,
+  EvenementsRoute: EvenementsRoute,
+  InscriptionRoute: InscriptionRoute,
+  PartenairesRoute: PartenairesRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
+  ThemesRoute: ThemesRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

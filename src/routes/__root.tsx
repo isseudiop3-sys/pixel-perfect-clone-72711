@@ -72,11 +72,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "CICOIDAF — Cercle des Œuvres pour les Initiatives de Développement Africain" },
+      { name: "description", content: "Portail officiel du CICOIDAF : conférences internationales, événements et initiatives pour l'émergence du continent africain." },
+      { name: "author", content: "CICOIDAF" },
+      { property: "og:title", content: "CICOIDAF — Conférence Internationale" },
+      { property: "og:description", content: "Le moteur de vos initiatives pour l'Afrique. Édition 2026 — L'émergence africaine en marche." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
@@ -108,12 +108,21 @@ function RootShell({ children }: { children: React.ReactNode }) {
   );
 }
 
+import { Header } from "@/components/site/Header";
+import { Footer } from "@/components/site/Footer";
+
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Outlet />
+      <div className="min-h-screen flex flex-col">
+        <Header />
+        <main className="flex-1">
+          <Outlet />
+        </main>
+        <Footer />
+      </div>
     </QueryClientProvider>
   );
 }
