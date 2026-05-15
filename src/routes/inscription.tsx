@@ -1,8 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { Check, ChevronLeft, ChevronRight, CheckCircle2, Upload, AlertCircle } from "lucide-react";
+import { Check, ChevronLeft, ChevronRight, CheckCircle2, Upload, AlertCircle, Lock } from "lucide-react";
 import { PageBanner } from "@/components/site/PageBanner";
-import banner from "@/assets/hero-conference.jpg";
+import banner from "@/assets/inscription-hero.jpg";
 
 export const Route = createFileRoute("/inscription")({
   head: () => ({
@@ -45,12 +45,27 @@ const EVENTS = [
 ];
 
 const MAX_EVENTS = 2;
+const CONTRIB_OPTIONS = ["Auditeur libre", "Auteur", "Exposant", "Panéliste"];
+const CAN_UPLOAD = new Set(["Auteur", "Panéliste"]);
+
+const STEP_TITLES = [
+  "Informations personnelles",
+  "Événement(s)",
+  "Profil",
+  "Contribution (seuls les auteurs et panélistes peuvent importer leurs documents)",
+  "Importez vos documents",
+  "Domaines d'intérêt",
+  "Engagement & Networking",
+];
 
 function InscriptionPage() {
   const [step, setStep] = useState(0);
   const [done, setDone] = useState(false);
   const [selected, setSelected] = useState<string[]>([]);
   const [cvName, setCvName] = useState<string>("");
+  const [contrib, setContrib] = useState<string>("");
+
+  const canUpload = CAN_UPLOAD.has(contrib);
 
   const toggleEvent = (e: string) => {
     setSelected((prev) => {
@@ -68,7 +83,7 @@ function InscriptionPage() {
           <div className="container-x max-w-2xl text-center">
             <CheckCircle2 className="text-primary mx-auto mb-6" size={64} />
             <h2 className="font-display text-3xl font-bold mb-3">Merci pour votre inscription !</h2>
-            <p className="text-ink/75">
+            <p className="text-ink/75 text-lg">
               Un email de confirmation vous sera envoyé sous peu. À très bientôt sur les conférences du CICOIDAF.
             </p>
           </div>
@@ -81,17 +96,16 @@ function InscriptionPage() {
     <>
       <PageBanner title="S'inscrire" subtitle="Formulaire d'inscription en 7 étapes" image={banner} />
 
-      <section className="py-16">
+      <section className="py-16 text-[1.05rem]">
         <div className="container-x max-w-4xl">
-          {/* Stepper */}
           <ol className="flex flex-wrap gap-2 mb-10 justify-center">
             {STEPS.map((s, i) => (
-              <li key={s} className={`flex items-center gap-2 text-xs px-3 py-2 rounded-full border ${
+              <li key={s} className={`flex items-center gap-2 text-sm font-semibold px-3 py-2 rounded-full border ${
                 i === step ? "bg-primary text-white border-primary"
                   : i < step ? "bg-accent text-primary border-accent"
-                  : "bg-white text-ink/60 border-border"
+                  : "bg-white text-ink/70 border-border"
               }`}>
-                <span className="w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold bg-white/30">
+                <span className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold bg-white/30">
                   {i < step ? <Check size={12} /> : i + 1}
                 </span>
                 <span className="hidden md:inline">{s}</span>
@@ -101,12 +115,14 @@ function InscriptionPage() {
 
           <form
             onSubmit={(e) => { e.preventDefault(); setDone(true); }}
-            className="card-soft space-y-6"
+            className="card-soft space-y-7"
           >
-            <h2 className="font-display text-2xl font-bold">{step + 1}. {STEPS[step]}</h2>
+            <h2 className="font-display text-2xl md:text-3xl font-extrabold leading-snug">
+              {step + 1}. {STEP_TITLES[step]}
+            </h2>
 
             {step === 0 && (
-              <div className="grid md:grid-cols-2 gap-4">
+              <div className="grid md:grid-cols-2 gap-5">
                 <Input label="Prénom" required />
                 <Input label="Nom" required />
                 <Input label="Email personnel" type="email" required />
@@ -119,8 +135,8 @@ function InscriptionPage() {
 
             {step === 1 && (
               <div>
-                <div className="flex items-start gap-2 p-3 mb-4 bg-accent text-primary-dark rounded-md text-sm">
-                  <AlertCircle size={18} className="shrink-0 mt-0.5" />
+                <div className="flex items-start gap-2 p-4 mb-5 bg-accent text-primary-dark rounded-md text-base font-semibold">
+                  <AlertCircle size={20} className="shrink-0 mt-0.5" />
                   <p>
                     <strong>Notez bien :</strong> veuillez cocher une ou deux cases selon l'événement.
                     La personne n'a le droit que de cocher au maximum <strong>deux</strong> cases.
@@ -133,7 +149,7 @@ function InscriptionPage() {
                     return (
                       <label
                         key={e}
-                        className={`flex items-start gap-3 p-3 border rounded-md transition ${
+                        className={`flex items-start gap-3 p-3 border rounded-md transition font-semibold ${
                           checked ? "border-primary bg-accent/30" : "border-border"
                         } ${disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer hover:border-primary"}`}
                       >
@@ -144,12 +160,12 @@ function InscriptionPage() {
                           onChange={() => toggleEvent(e)}
                           className="mt-1 accent-primary"
                         />
-                        <span className="text-sm">{e}</span>
+                        <span className="text-sm md:text-base">{e}</span>
                       </label>
                     );
                   })}
                 </div>
-                <p className="mt-3 text-xs text-ink/60">
+                <p className="mt-3 text-sm font-semibold text-ink/70">
                   {selected.length}/{MAX_EVENTS} événement(s) sélectionné(s).
                 </p>
               </div>
@@ -160,36 +176,68 @@ function InscriptionPage() {
             )}
 
             {step === 3 && (
-              <RadioGroup name="contrib" options={["Auditeur libre", "Auteur", "Exposant", "Panéliste"]} />
+              <div className="space-y-4">
+                <p className="text-base font-semibold text-ink/80">
+                  Sélectionnez votre type de contribution. <em>Seuls les auteurs et panélistes pourront importer leurs documents à l'étape suivante.</em>
+                </p>
+                <RadioGroup
+                  name="contrib"
+                  options={CONTRIB_OPTIONS}
+                  value={contrib}
+                  onChange={setContrib}
+                />
+              </div>
             )}
 
             {step === 4 && (
               <div className="space-y-5">
-                <div>
-                  <label className="block text-sm font-medium mb-1">Titre de votre initiative ou article *</label>
-                  <input
-                    required
-                    placeholder="Ex : Initiative pour l'éducation numérique en Afrique de l'Ouest"
-                    className="w-full px-4 py-3 rounded-md border border-input bg-white focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition"
-                  />
+                <div className="flex items-start gap-2 p-4 bg-accent text-primary-dark rounded-md text-base font-semibold">
+                  <AlertCircle size={20} className="shrink-0 mt-0.5" />
+                  <p>
+                    <strong>Notez bien :</strong> seuls les <strong>auteurs</strong> et <strong>panélistes</strong> ont la possibilité d'importer leurs documents.
+                    Si vous avez sélectionné une autre option à l'étape 4, vous ne pourrez pas importer de document.
+                  </p>
                 </div>
-                <div>
-                  <label className="block text-sm font-medium mb-2">Déposer votre CV (PDF) *</label>
-                  <label className="flex flex-col items-center justify-center gap-2 border-2 border-dashed border-border rounded-md p-8 cursor-pointer hover:border-primary transition">
-                    <Upload size={28} className="text-primary" />
-                    <span className="text-sm font-medium">
-                      {cvName ? cvName : "Cliquez pour sélectionner un fichier PDF"}
-                    </span>
-                    <span className="text-xs text-ink/60">PDF uniquement — 10 Mo max</span>
-                    <input
-                      type="file"
-                      accept="application/pdf"
-                      className="hidden"
-                      onChange={(e) => setCvName(e.target.files?.[0]?.name ?? "")}
-                      required
-                    />
-                  </label>
-                </div>
+
+                {!canUpload ? (
+                  <div className="flex flex-col items-center justify-center gap-3 border-2 border-dashed border-border rounded-md p-10 text-center">
+                    <Lock size={32} className="text-ink/40" />
+                    <p className="text-base font-semibold text-ink/70">
+                      Import de documents non disponible pour votre profil de contribution.
+                    </p>
+                    <p className="text-sm text-ink/60">
+                      Vous pouvez passer à l'étape suivante.
+                    </p>
+                  </div>
+                ) : (
+                  <>
+                    <div>
+                      <label className="block text-base font-semibold mb-2">Titre de votre initiative ou article *</label>
+                      <input
+                        required
+                        placeholder="Ex : Initiative pour l'éducation numérique en Afrique de l'Ouest"
+                        className="w-full px-4 py-3.5 rounded-md border border-input bg-white text-base font-medium focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-base font-semibold mb-2">Déposer votre CV (PDF) *</label>
+                      <label className="flex flex-col items-center justify-center gap-2 border-2 border-dashed border-border rounded-md p-8 cursor-pointer hover:border-primary transition">
+                        <Upload size={28} className="text-primary" />
+                        <span className="text-base font-semibold">
+                          {cvName ? cvName : "Cliquez pour sélectionner un fichier PDF"}
+                        </span>
+                        <span className="text-sm text-ink/60">PDF uniquement — 10 Mo max</span>
+                        <input
+                          type="file"
+                          accept="application/pdf"
+                          className="hidden"
+                          onChange={(e) => setCvName(e.target.files?.[0]?.name ?? "")}
+                          required
+                        />
+                      </label>
+                    </div>
+                  </>
+                )}
               </div>
             )}
 
@@ -208,13 +256,13 @@ function InscriptionPage() {
 
             {step === 6 && (
               <div className="space-y-3">
-                <label className="flex items-start gap-3 p-3 border border-border rounded-md cursor-pointer">
+                <label className="flex items-start gap-3 p-4 border border-border rounded-md cursor-pointer text-base font-semibold">
                   <input type="checkbox" defaultChecked className="mt-1 accent-primary" />
-                  <span className="text-sm">Je souhaite que mon profil soit visible par les autres participants pour favoriser le réseautage.</span>
+                  <span>Je souhaite que mon profil soit visible par les autres participants pour favoriser le réseautage.</span>
                 </label>
-                <label className="flex items-start gap-3 p-3 border border-border rounded-md cursor-pointer">
+                <label className="flex items-start gap-3 p-4 border border-border rounded-md cursor-pointer text-base font-semibold">
                   <input type="checkbox" defaultChecked className="mt-1 accent-primary" />
-                  <span className="text-sm">Je m'abonne à la Newsletter du CICOIDAF pour recevoir les alertes sur les prochaines conférences.</span>
+                  <span>Je m'abonne à la Newsletter du CICOIDAF pour recevoir les alertes sur les prochaines conférences.</span>
                 </label>
               </div>
             )}
@@ -249,20 +297,27 @@ function InscriptionPage() {
 function Input({ label, type = "text", required }: { label: string; type?: string; required?: boolean }) {
   return (
     <div>
-      <label className="block text-sm font-medium mb-1">{label}{required && " *"}</label>
+      <label className="block text-base font-semibold mb-2">{label}{required && " *"}</label>
       <input type={type} required={required}
-        className="w-full px-4 py-3 rounded-md border border-input bg-white focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition" />
+        className="w-full px-4 py-3.5 rounded-md border border-input bg-white text-base font-medium focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition" />
     </div>
   );
 }
 
-function RadioGroup({ name, options }: { name: string; options: string[] }) {
+function RadioGroup({ name, options, value, onChange }: { name: string; options: string[]; value?: string; onChange?: (v: string) => void }) {
+  const controlled = value !== undefined && onChange !== undefined;
   return (
     <div className="grid sm:grid-cols-2 gap-3">
       {options.map((o) => (
-        <label key={o} className="flex items-center gap-3 p-3 border border-border rounded-md cursor-pointer hover:border-primary transition">
-          <input type="radio" name={name} className="accent-primary" />
-          <span className="text-sm">{o}</span>
+        <label key={o} className={`flex items-center gap-3 p-4 border rounded-md cursor-pointer transition text-base font-semibold ${
+          controlled && value === o ? "border-primary bg-accent/30" : "border-border hover:border-primary"
+        }`}>
+          {controlled ? (
+            <input type="radio" name={name} className="accent-primary" checked={value === o} onChange={() => onChange!(o)} />
+          ) : (
+            <input type="radio" name={name} className="accent-primary" />
+          )}
+          <span>{o}</span>
         </label>
       ))}
     </div>
@@ -273,9 +328,9 @@ function CheckGroup({ options }: { options: string[] }) {
   return (
     <div className="grid gap-3">
       {options.map((o) => (
-        <label key={o} className="flex items-center gap-3 p-3 border border-border rounded-md cursor-pointer hover:border-primary transition">
+        <label key={o} className="flex items-center gap-3 p-4 border border-border rounded-md cursor-pointer hover:border-primary transition text-base font-semibold">
           <input type="checkbox" className="accent-primary" />
-          <span className="text-sm">{o}</span>
+          <span>{o}</span>
         </label>
       ))}
     </div>

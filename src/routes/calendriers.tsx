@@ -86,7 +86,7 @@ function CalendriersPage() {
         <div className="container-x">
           <div className="text-center mb-14">
             <p className="section-eyebrow">Nos rendez-vous</p>
-            <h2 className="section-title mt-3">Chronologie 2026 — 2027</h2>
+            <h2 className="section-title mt-3">Calendrier de nos événements</h2>
           </div>
 
           <div className="grid md:grid-cols-2 gap-6">
