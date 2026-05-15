@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ThemesRouteImport } from './routes/themes'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as PartenairesRouteImport } from './routes/partenaires'
 import { Route as InscriptionRouteImport } from './routes/inscription'
 import { Route as EvenementsRouteImport } from './routes/evenements'
@@ -22,6 +23,11 @@ import { Route as IndexRouteImport } from './routes/index'
 const ThemesRoute = ThemesRouteImport.update({
   id: '/themes',
   path: '/themes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PartenairesRoute = PartenairesRouteImport.update({
@@ -74,6 +80,7 @@ export interface FileRoutesByFullPath {
   '/evenements': typeof EvenementsRoute
   '/inscription': typeof InscriptionRoute
   '/partenaires': typeof PartenairesRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/themes': typeof ThemesRoute
 }
 export interface FileRoutesByTo {
@@ -85,6 +92,7 @@ export interface FileRoutesByTo {
   '/evenements': typeof EvenementsRoute
   '/inscription': typeof InscriptionRoute
   '/partenaires': typeof PartenairesRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/themes': typeof ThemesRoute
 }
 export interface FileRoutesById {
@@ -97,6 +105,7 @@ export interface FileRoutesById {
   '/evenements': typeof EvenementsRoute
   '/inscription': typeof InscriptionRoute
   '/partenaires': typeof PartenairesRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/themes': typeof ThemesRoute
 }
 export interface FileRouteTypes {
@@ -110,6 +119,7 @@ export interface FileRouteTypes {
     | '/evenements'
     | '/inscription'
     | '/partenaires'
+    | '/sitemap.xml'
     | '/themes'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -121,6 +131,7 @@ export interface FileRouteTypes {
     | '/evenements'
     | '/inscription'
     | '/partenaires'
+    | '/sitemap.xml'
     | '/themes'
   id:
     | '__root__'
@@ -132,6 +143,7 @@ export interface FileRouteTypes {
     | '/evenements'
     | '/inscription'
     | '/partenaires'
+    | '/sitemap.xml'
     | '/themes'
   fileRoutesById: FileRoutesById
 }
@@ -144,6 +156,7 @@ export interface RootRouteChildren {
   EvenementsRoute: typeof EvenementsRoute
   InscriptionRoute: typeof InscriptionRoute
   PartenairesRoute: typeof PartenairesRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   ThemesRoute: typeof ThemesRoute
 }
 
@@ -154,6 +167,13 @@ declare module '@tanstack/react-router' {
       path: '/themes'
       fullPath: '/themes'
       preLoaderRoute: typeof ThemesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/partenaires': {
@@ -224,6 +244,7 @@ const rootRouteChildren: RootRouteChildren = {
   EvenementsRoute: EvenementsRoute,
   InscriptionRoute: InscriptionRoute,
   PartenairesRoute: PartenairesRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   ThemesRoute: ThemesRoute,
 }
 export const routeTree = rootRouteImport
