@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { Check, ChevronLeft, ChevronRight, CheckCircle2 } from "lucide-react";
+import { Check, ChevronLeft, ChevronRight, CheckCircle2, Upload, AlertCircle } from "lucide-react";
 import { PageBanner } from "@/components/site/PageBanner";
 import banner from "@/assets/hero-conference.jpg";
 
@@ -20,14 +20,14 @@ const STEPS = [
   "Événement(s)",
   "Profil",
   "Contribution",
+  "Importez vos documents",
   "Domaines d'intérêt",
-  "Informations complémentaires",
   "Engagement & Networking",
 ];
 
 const EVENTS = [
   "CICOIDAF — 14-28 Nov 2026",
-  "RACOIDAF — 26-27 Nov 2026",
+  "RÉUSSITE D'AFRIQUE — 26-27 Nov 2026",
   "FESPASOL — 21-26 Déc 2026",
   "DANCE PEOPLE MUSIC — 27-31 Déc 2026",
   "COIDAF FORUM — 10-13 Fév 2027",
@@ -38,12 +38,27 @@ const EVENTS = [
   "DANCE PEOPLE MUSIC — 27-30 Juin 2027",
   "FESPASOL — 16-21 Août 2027",
   "DANCE PEOPLE MUSIC — 27-28 Août 2027",
+  "CICOIDAF — 17-25 Nov 2027",
+  "RÉUSSITE D'AFRIQUE — 26-28 Nov 2027",
+  "FESPASOL — 20-31 Déc 2027",
+  "DANCE PEOPLE MUSIC — 30-31 Déc 2027",
 ];
 
+const MAX_EVENTS = 2;
+
 function InscriptionPage() {
-  const { event } = Route.useSearch();
   const [step, setStep] = useState(0);
   const [done, setDone] = useState(false);
+  const [selected, setSelected] = useState<string[]>([]);
+  const [cvName, setCvName] = useState<string>("");
+
+  const toggleEvent = (e: string) => {
+    setSelected((prev) => {
+      if (prev.includes(e)) return prev.filter((x) => x !== e);
+      if (prev.length >= MAX_EVENTS) return prev;
+      return [...prev, e];
+    });
+  };
 
   if (done) {
     return (
@@ -104,16 +119,39 @@ function InscriptionPage() {
 
             {step === 1 && (
               <div>
-                <p className="text-sm text-ink/70 mb-4">Sélectionnez les dates auxquelles vous souhaitez participer :</p>
-                <div className="grid md:grid-cols-2 gap-3">
-                  {EVENTS.map((e) => (
-                    <label key={e} className="flex items-start gap-3 p-3 border border-border rounded-md hover:border-primary cursor-pointer transition">
-                      <input type="checkbox" defaultChecked={event ? e.includes(event.split("-")[0].toUpperCase()) : false}
-                        className="mt-1 accent-primary" />
-                      <span className="text-sm">{e}</span>
-                    </label>
-                  ))}
+                <div className="flex items-start gap-2 p-3 mb-4 bg-accent text-primary-dark rounded-md text-sm">
+                  <AlertCircle size={18} className="shrink-0 mt-0.5" />
+                  <p>
+                    <strong>Notez bien :</strong> veuillez cocher une ou deux cases selon l'événement.
+                    La personne n'a le droit que de cocher au maximum <strong>deux</strong> cases.
+                  </p>
                 </div>
+                <div className="grid md:grid-cols-2 gap-3">
+                  {EVENTS.map((e) => {
+                    const checked = selected.includes(e);
+                    const disabled = !checked && selected.length >= MAX_EVENTS;
+                    return (
+                      <label
+                        key={e}
+                        className={`flex items-start gap-3 p-3 border rounded-md transition ${
+                          checked ? "border-primary bg-accent/30" : "border-border"
+                        } ${disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer hover:border-primary"}`}
+                      >
+                        <input
+                          type="checkbox"
+                          checked={checked}
+                          disabled={disabled}
+                          onChange={() => toggleEvent(e)}
+                          className="mt-1 accent-primary"
+                        />
+                        <span className="text-sm">{e}</span>
+                      </label>
+                    );
+                  })}
+                </div>
+                <p className="mt-3 text-xs text-ink/60">
+                  {selected.length}/{MAX_EVENTS} événement(s) sélectionné(s).
+                </p>
               </div>
             )}
 
@@ -126,29 +164,46 @@ function InscriptionPage() {
             )}
 
             {step === 4 && (
+              <div className="space-y-5">
+                <div>
+                  <label className="block text-sm font-medium mb-1">Titre de votre initiative ou article *</label>
+                  <input
+                    required
+                    placeholder="Ex : Initiative pour l'éducation numérique en Afrique de l'Ouest"
+                    className="w-full px-4 py-3 rounded-md border border-input bg-white focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium mb-2">Déposer votre CV (PDF) *</label>
+                  <label className="flex flex-col items-center justify-center gap-2 border-2 border-dashed border-border rounded-md p-8 cursor-pointer hover:border-primary transition">
+                    <Upload size={28} className="text-primary" />
+                    <span className="text-sm font-medium">
+                      {cvName ? cvName : "Cliquez pour sélectionner un fichier PDF"}
+                    </span>
+                    <span className="text-xs text-ink/60">PDF uniquement — 10 Mo max</span>
+                    <input
+                      type="file"
+                      accept="application/pdf"
+                      className="hidden"
+                      onChange={(e) => setCvName(e.target.files?.[0]?.name ?? "")}
+                      required
+                    />
+                  </label>
+                </div>
+              </div>
+            )}
+
+            {step === 5 && (
               <CheckGroup options={[
                 "Éducation et Formation de la jeunesse",
                 "Santé et Bien-être social",
                 "Technologies et Infrastructures durables",
                 "Économie circulaire et Entrepreneuriat",
                 "Agriculture et Sécurité alimentaire",
+                "Culture, Arts et Patrimoine",
+                "Diplomatie et Coopération internationale",
+                "Environnement et Climat",
               ]} />
-            )}
-
-            {step === 5 && (
-              <div className="space-y-4">
-                <div>
-                  <label className="block text-sm font-medium mb-1">Comment avez-vous connu le CICOIDAF ?</label>
-                  <select className="w-full px-4 py-3 rounded-md border border-input bg-white">
-                    <option>Réseaux sociaux</option><option>Email / Newsletter</option>
-                    <option>Bouche à oreille</option><option>Presse</option><option>Autre</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-sm font-medium mb-1">Attentes / Commentaires</label>
-                  <textarea rows={5} className="w-full px-4 py-3 rounded-md border border-input bg-white" />
-                </div>
-              </div>
             )}
 
             {step === 6 && (
