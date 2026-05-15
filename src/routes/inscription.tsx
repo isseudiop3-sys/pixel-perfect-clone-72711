@@ -305,19 +305,18 @@ function Input({ label, type = "text", required }: { label: string; type?: strin
 }
 
 function RadioGroup({ name, options, value, onChange }: { name: string; options: string[]; value?: string; onChange?: (v: string) => void }) {
+  const controlled = value !== undefined && onChange !== undefined;
   return (
     <div className="grid sm:grid-cols-2 gap-3">
       {options.map((o) => (
         <label key={o} className={`flex items-center gap-3 p-4 border rounded-md cursor-pointer transition text-base font-semibold ${
-          value === o ? "border-primary bg-accent/30" : "border-border hover:border-primary"
+          controlled && value === o ? "border-primary bg-accent/30" : "border-border hover:border-primary"
         }`}>
-          <input
-            type="radio"
-            name={name}
-            className="accent-primary"
-            checked={value !== undefined ? value === o : undefined}
-            onChange={onChange ? () => onChange(o) : undefined}
-          />
+          {controlled ? (
+            <input type="radio" name={name} className="accent-primary" checked={value === o} onChange={() => onChange!(o)} />
+          ) : (
+            <input type="radio" name={name} className="accent-primary" />
+          )}
           <span>{o}</span>
         </label>
       ))}
