@@ -107,17 +107,33 @@ function EvenementsPage() {
       </section>
 
       <section className="bg-surface py-20">
-        <div className="container-x text-center">
-          <p className="section-eyebrow">À découvrir en vidéo</p>
-          <h2 className="section-title mt-3 mb-8">Réussite d'Afrique</h2>
-          <div className="aspect-video max-w-4xl mx-auto rounded-xl overflow-hidden shadow-2xl">
-            <iframe
-              className="w-full h-full"
-              src="https://www.youtube.com/embed/eY803uik2BY"
-              title="Réussite d'Afrique"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
+        <div className="container-x">
+          <div className="text-center mb-12">
+            <p className="section-eyebrow">À découvrir en vidéo</p>
+            <h2 className="section-title mt-3">Nos événements en images</h2>
+            <p className="text-ink/70 mt-3 max-w-2xl mx-auto">
+              Plongez dans l'ambiance de nos rencontres internationales à travers une sélection de moments forts.
+            </p>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              "Ay6lDFINqFw",
+              "_aXA1jRXWnk",
+              "wNULQ75pGjE",
+              "_HhbxSL3Swc",
+              "A5PuNPjogC8",
+              "diWNp9Fb5TU",
+            ].map((id) => (
+              <div key={id} className="aspect-video rounded-xl overflow-hidden shadow-xl bg-black">
+                <iframe
+                  className="w-full h-full"
+                  src={`https://www.youtube.com/embed/${id}`}
+                  title={`CICOIDAF vidéo ${id}`}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
+            ))}
           </div>
         </div>
       </section>
