@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageBanner } from "@/components/site/PageBanner";
 import { FinalCta } from "@/components/site/FinalCta";
-import banner from "@/assets/odd-banner.jpg";
+import banner from "@/assets/photo-conference.jpg";
 import logoCicoidaf from "@/assets/logo-cicoidaf-event.jpg";
 import logoFespasol from "@/assets/logo-fespasol.jpg";
 import logoDpm from "@/assets/logo-dpm.jpg";

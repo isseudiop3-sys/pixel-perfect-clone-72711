@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ExternalLink, Video, Linkedin, Facebook, Youtube, Instagram, Twitter, MessageCircle, Music2 } from "lucide-react";
 import { PageBanner } from "@/components/site/PageBanner";
 import { FinalCta } from "@/components/site/FinalCta";
-import banner from "@/assets/global-conference.jpg";
+import banner from "@/assets/odd-banner.jpg";
 
 export const Route = createFileRoute("/actualite")({
   head: () => ({

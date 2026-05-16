@@ -16,15 +16,15 @@ export function Footer() {
   return (
     <footer className="relative text-white/85 mt-0 isolate">
       <img src={bg} alt="" className="absolute inset-0 w-full h-full object-cover -z-10" loading="lazy" />
-      <div className="absolute inset-0 bg-black/65 -z-10" />
-      <div className="container-x py-14 grid gap-10 md:grid-cols-4">
+      <div className="absolute inset-0 bg-black/45 -z-10" />
+      <div className="container-x py-8 grid gap-6 md:grid-cols-4">
         <div className="md:col-span-2">
-          <img src={logo} alt="CICOIDAF" className="h-14 w-auto bg-white p-2 rounded" />
-          <p className="mt-4 text-sm leading-relaxed text-white/70 max-w-md">
+          <img src={logo} alt="CICOIDAF" className="h-20 w-auto bg-white p-2 rounded" />
+          <p className="mt-3 text-sm leading-relaxed text-white/80 max-w-md">
             Cercle des Œuvres pour les Initiatives de Développement Africain.
             Une plateforme dédiée à l'émergence du continent.
           </p>
-          <div className="mt-5 flex flex-wrap gap-2">
+          <div className="mt-4 flex flex-wrap gap-2">
             {SOCIALS.map(({ I, href, label }) => (
               <a
                 key={label}
@@ -32,7 +32,7 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={label}
-                className="w-9 h-9 rounded-full bg-white/10 hover:bg-primary flex items-center justify-center transition"
+                className="w-9 h-9 rounded-full bg-white/15 hover:bg-primary flex items-center justify-center transition"
               >
                 <I size={16} />
               </a>
@@ -40,10 +40,10 @@ export function Footer() {
           </div>
         </div>
         <div>
-          <h4 className="text-white text-sm font-semibold uppercase tracking-wider mb-3">
+          <h4 className="text-white text-sm font-semibold uppercase tracking-wider mb-2">
             Navigation
           </h4>
-          <ul className="space-y-2 text-sm">
+          <ul className="space-y-1.5 text-sm">
             <li><Link to="/a-propos" className="hover:text-primary">À propos</Link></li>
             <li><Link to="/conferences" className="hover:text-primary">Conférences</Link></li>
             <li><Link to="/evenements" className="hover:text-primary">Événements</Link></li>
@@ -54,20 +54,20 @@ export function Footer() {
           </ul>
         </div>
         <div>
-          <h4 className="text-white text-sm font-semibold uppercase tracking-wider mb-3">
+          <h4 className="text-white text-sm font-semibold uppercase tracking-wider mb-2">
             Contact
           </h4>
-          <ul className="space-y-3 text-sm text-white/70">
+          <ul className="space-y-2 text-sm text-white/80">
             <li className="flex gap-2"><MapPin size={16} className="mt-0.5 shrink-0 text-primary" />62 Rue du Landy, Aubervilliers, Paris</li>
             <li className="flex gap-2"><Phone size={16} className="mt-0.5 shrink-0 text-primary" />+33 07 66 11 36 47</li>
             <li className="flex gap-2"><Mail size={16} className="mt-0.5 shrink-0 text-primary" />coidaf-france@outlook.com</li>
           </ul>
         </div>
       </div>
-      <div className="border-t border-white/10 py-5 relative">
-        <div className="container-x text-xs text-white/60 flex flex-wrap gap-2 justify-between">
+      <div className="border-t border-white/10 py-3 relative">
+        <div className="container-x text-xs text-white/70 flex flex-wrap gap-2 justify-between">
           <span>© {new Date().getFullYear()} CICOIDAF tous droits reservé — Le CICOIDAF est un bien privé enrigistré du COIDAF INTL.</span>
-          <span>Édition 2026 — Le développement africain en marche</span>
+          <span>Le développement du continent africain en marche</span>
         </div>
       </div>
     </footer>

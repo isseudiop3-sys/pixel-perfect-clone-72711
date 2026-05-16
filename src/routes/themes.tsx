@@ -4,7 +4,7 @@ import {
 } from "lucide-react";
 import { PageBanner } from "@/components/site/PageBanner";
 import { FinalCta } from "@/components/site/FinalCta";
-import banner from "@/assets/photo-conference.jpg";
+import banner from "@/assets/photo-auditorium.jpg";
 
 export const Route = createFileRoute("/themes")({
   head: () => ({

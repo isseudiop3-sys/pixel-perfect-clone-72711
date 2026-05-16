@@ -37,7 +37,7 @@ export function Header() {
         scrolled ? "shadow-[0_2px_20px_-8px_rgba(0,0,0,0.12)]" : "shadow-none"
       }`}
     >
-      <div className="container-x flex items-center justify-between h-16 lg:h-[72px] gap-6">
+      <div className="container-x flex items-center justify-between h-20 lg:h-24 gap-6">
         {/* Logo */}
         <Link
           to="/"
@@ -47,7 +47,7 @@ export function Header() {
           <img
             src={logo}
             alt="CICOIDAF"
-            className="h-9 lg:h-10 w-auto object-contain"
+            className="h-14 lg:h-16 w-auto object-contain"
           />
         </Link>
 
