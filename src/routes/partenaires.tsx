@@ -2,9 +2,9 @@ import { createFileRoute } from "@tanstack/react-router";
 import { PageBanner } from "@/components/site/PageBanner";
 import { FinalCta } from "@/components/site/FinalCta";
 import banner from "@/assets/photo-handshake.jpg";
-import r1 from "@/assets/photo-handshake.jpg";
-import r2 from "@/assets/photo-networking-event.jpg";
-import r3 from "@/assets/photo-auditorium-2.jpg";
+import r1 from "@/assets/partner-strategic.jpg";
+import r2 from "@/assets/partner-impact.jpg";
+import r3 from "@/assets/partner-network.jpg";
 
 export const Route = createFileRoute("/partenaires")({
   head: () => ({
