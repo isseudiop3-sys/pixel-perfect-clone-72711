@@ -18,57 +18,57 @@ const PERIODS = [
   {
     n: "01", month: "Novembre 2026", countries: "FRANCE",
     events: [
-      { name: "CICOIDAF", date: "14-28 Novembre 2026", slug: "cicoidaf-2026-11" },
-      { name: "RÉUSSITE D'AFRIQUE", date: "26-27 Novembre 2026", slug: "reussite-2026-11" },
+      { name: "CICOIDAF", date: "14-28 Novembre 2026", price: "250 €", slug: "cicoidaf-2026-11" },
+      { name: "RACOIDAF", date: "26-27 Novembre 2026", price: "310 €", slug: "racoidaf-2026-11" },
     ],
   },
   {
     n: "02", month: "Décembre 2026", countries: "FRANCE, CÔTE D'IVOIRE, CAMEROUN, SÉNÉGAL",
     events: [
-      { name: "FESPASOL", date: "21-26 Décembre 2026", slug: "fespasol-2026-12" },
-      { name: "DANCE PEOPLE MUSIC", date: "27-31 Décembre 2026", slug: "dpm-2026-12" },
+      { name: "FESPASOL", date: "21-26 Décembre 2026", price: "25 €", slug: "fespasol-2026-12" },
+      { name: "DANCE PEOPLE MUSIC", date: "27-31 Décembre 2026", price: "5,5 €", slug: "dpm-2026-12" },
     ],
   },
   {
-    n: "03", month: "Février 2027", countries: "CAMEROUN, CÔTE D'IVOIRE, TOGO, BURKINA FASO",
+    n: "03", month: "Février 2027", countries: "CAMEROUN, CÔTE D'IVOIRE",
     events: [
-      { name: "COIDAF FORUM", date: "10-13 Février 2027", slug: "forum-2027-02" },
-      { name: "RÉUSSITE D'AFRIQUE", date: "25-27 Février 2027", slug: "reussite-2027-02" },
+      { name: "COIDAF FORUM", date: "10-13 Février 2027", price: "450 €", slug: "forum-2027-02" },
+      { name: "RÉUSSITE D'AFRIQUE", date: "25-27 Février 2027", price: "310 €", slug: "reussite-2027-02" },
     ],
   },
   {
-    n: "04", month: "Mars 2027", countries: "CAMEROUN, CÔTE D'IVOIRE, MAROC, SÉNÉGAL",
+    n: "04", month: "Mars 2027", countries: "CAMEROUN, CÔTE D'IVOIRE, CANADA",
     events: [
-      { name: "FESPASOL", date: "12-13 Mars 2027", slug: "fespasol-2027-03" },
-      { name: "CICOIDAF", date: "24-27 Mars 2027", slug: "cicoidaf-2027-03" },
+      { name: "FESPASOL", date: "12-13 Mars 2027", price: "25 €", slug: "fespasol-2027-03" },
+      { name: "CICOIDAF", date: "24-27 Mars 2027", price: "250 €", slug: "cicoidaf-2027-03" },
     ],
   },
   {
     n: "05", month: "Juin 2027", countries: "CÔTE D'IVOIRE, SÉNÉGAL, FRANCE",
     events: [
-      { name: "RACOIDAF", date: "21-26 Juin 2027", slug: "racoidaf-2027-06" },
-      { name: "DANCE PEOPLE MUSIC", date: "27-30 Juin 2027", slug: "dpm-2027-06" },
+      { name: "RACOIDAF", date: "21-26 Juin 2027", price: "60 €", slug: "racoidaf-2027-06" },
+      { name: "DANCE PEOPLE MUSIC", date: "27-30 Juin 2027", price: "5,5 €", slug: "dpm-2027-06" },
     ],
   },
   {
     n: "06", month: "Août 2027", countries: "CAMEROUN, CÔTE D'IVOIRE, SÉNÉGAL",
     events: [
-      { name: "FESPASOL", date: "16-21 Août 2027", slug: "fespasol-2027-08" },
-      { name: "DANCE PEOPLE MUSIC", date: "27-28 Août 2027", slug: "dpm-2027-08" },
+      { name: "FESPASOL", date: "16-21 Août 2027", price: "25 €", slug: "fespasol-2027-08" },
+      { name: "DANCE PEOPLE MUSIC", date: "27-28 Août 2027", price: "105,5 €", slug: "dpm-2027-08" },
     ],
   },
   {
     n: "07", month: "Novembre 2027", countries: "CANADA, TOGO",
     events: [
-      { name: "CICOIDAF", date: "17-25 Novembre 2027", slug: "cicoidaf-2027-11" },
-      { name: "RÉUSSITE D'AFRIQUE", date: "26-28 Novembre 2027", slug: "reussite-2027-11" },
+      { name: "CICOIDAF", date: "17-25 Novembre 2027", price: "250 €", slug: "cicoidaf-2027-11" },
+      { name: "RÉUSSITE D'AFRIQUE", date: "26-28 Novembre 2027", price: "310 €", slug: "reussite-2027-11" },
     ],
   },
   {
     n: "08", month: "Décembre 2027", countries: "BURKINA FASO, CAMEROUN, MAROC",
     events: [
-      { name: "FESPASOL", date: "20-31 Décembre 2027", slug: "fespasol-2027-12" },
-      { name: "DANCE PEOPLE MUSIC", date: "30-31 Décembre 2027", slug: "dpm-2027-12" },
+      { name: "FESPASOL", date: "20-31 Décembre 2027", price: "25 €", slug: "fespasol-2027-12" },
+      { name: "DANCE PEOPLE MUSIC", date: "30-31 Décembre 2027", price: "5,5 €", slug: "dpm-2027-12" },
     ],
   },
 ];
@@ -111,6 +111,7 @@ function CalendriersPage() {
                         <p className="text-xs text-ink/60 flex items-center gap-1">
                           <Calendar size={12} /> {ev.date}
                         </p>
+                        <p className="text-xs font-semibold text-primary mt-1">Frais de participation : {ev.price}</p>
                       </div>
                       <Link
                         to="/inscription"
