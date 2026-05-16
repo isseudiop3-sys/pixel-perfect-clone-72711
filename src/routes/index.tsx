@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Globe2, BookOpenCheck, Users, Headphones, GraduationCap, HeartHandshake } from "lucide-react";
 import { FinalCta } from "@/components/site/FinalCta";
+import { CountUp } from "@/components/site/CountUp";
 import hero from "@/assets/hero-conference.jpg";
 import networking from "@/assets/photo-networking.jpg";
 
@@ -19,21 +20,21 @@ function HomePage() {
     <>
       {/* HERO */}
       <section className="relative overflow-hidden">
-        <img src={hero} alt="Conférence CICOIDAF" className="absolute inset-0 w-full h-full object-cover" />
+        <img src={hero} alt="Drapeaux internationaux" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/55 to-[rgba(139,0,0,0.7)]" />
-        <div className="relative container-x py-28 md:py-40 text-white text-center">
-          <p className="font-script text-6xl md:text-8xl lg:text-9xl text-white leading-[1.05] mb-4">
+        <div className="relative container-x py-16 md:py-24 text-white text-center">
+          <p className="font-display italic text-2xl md:text-3xl lg:text-4xl text-white leading-tight mb-3 max-w-3xl mx-auto">
             « Plus vous apprenez, plus vous découvrirez d'endroits. »
           </p>
-          <p className="font-script text-4xl md:text-5xl text-white/90 mb-6">— Dr. Seuss</p>
-          <h1 className="font-display text-4xl md:text-6xl font-bold leading-tight max-w-4xl mx-auto text-white">
+          <p className="font-display text-base md:text-lg text-white/85 mb-6">— Dr. Seuss</p>
+          <h1 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold leading-tight max-w-3xl mx-auto text-white">
             Bienvenue sur le Portail CICOIDAF —<br />
             <span className="text-[oklch(0.85_0.12_27)]">le moteur de vos initiatives pour l'Afrique.</span>
           </h1>
-          <p className="mt-6 text-lg text-white/85 max-w-2xl mx-auto">
+          <p className="mt-5 text-base md:text-lg text-white/85 max-w-2xl mx-auto">
             Cercle des Œuvres pour les Initiatives de Développement Africain.
           </p>
-          <div className="mt-10 flex flex-wrap gap-4 justify-center">
+          <div className="mt-8 flex flex-wrap gap-4 justify-center">
             <Link to="/inscription" className="btn-primary">S'inscrire à la conférence</Link>
             <Link to="/conferences" className="btn-ghost-light">Découvrir nos conférences</Link>
           </div>
@@ -44,12 +45,14 @@ function HomePage() {
       <section className="bg-surface py-16">
         <div className="container-x grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
           {[
-            { n: "+32", l: "Pays représentés" },
-            { n: "+3 000", l: "Participants" },
-            { n: "+60 000", l: "Visiteurs" },
+            { n: 32, l: "Pays représentés" },
+            { n: 3000, l: "Participants" },
+            { n: 60000, l: "Visiteurs" },
           ].map((s) => (
             <div key={s.l} className="card-soft">
-              <div className="font-display text-5xl font-bold text-primary">{s.n}</div>
+              <div className="font-display text-5xl font-bold text-primary">
+                <CountUp end={s.n} />
+              </div>
               <div className="mt-2 text-sm uppercase tracking-widest text-ink/70">{s.l}</div>
             </div>
           ))}
@@ -72,8 +75,7 @@ function HomePage() {
           <div className="relative">
             <img src={networking} alt="Réseautage" className="rounded-xl shadow-2xl w-full" loading="lazy" />
             <div className="absolute -bottom-6 -left-6 bg-primary text-primary-foreground p-6 rounded-xl shadow-xl max-w-xs hidden md:block">
-              <p className="font-display text-xl font-semibold text-white">Édition 2026</p>
-              <p className="text-sm text-white/90">Le développement africain en marche.</p>
+              <p className="font-display text-lg font-semibold text-white leading-snug">Le développement du continent africain à portée de main.</p>
             </div>
           </div>
         </div>
