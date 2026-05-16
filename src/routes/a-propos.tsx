@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Bell, Network, Headphones, GraduationCap, HeartHandshake } from "lucide-react";
 import { PageBanner } from "@/components/site/PageBanner";
 import { FinalCta } from "@/components/site/FinalCta";
-import banner from "@/assets/photo-conference.jpg";
+import banner from "@/assets/photo-networking.jpg";
 import side from "@/assets/photo-networking-event.jpg";
 
 export const Route = createFileRoute("/a-propos")({

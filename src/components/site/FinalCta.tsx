@@ -22,7 +22,7 @@ export function FinalCta({
         className="absolute inset-0 w-full h-full object-cover"
         loading="lazy"
       />
-      <div className="absolute inset-0 bg-gradient-to-r from-[rgba(139,0,0,0.92)] via-[rgba(139,0,0,0.78)] to-[rgba(0,0,0,0.55)]" />
+      <div className="absolute inset-0 bg-gradient-to-r from-[rgba(139,0,0,0.55)] via-[rgba(139,0,0,0.45)] to-[rgba(0,0,0,0.35)]" />
       <div className="relative container-x py-20 md:py-28 text-center text-white">
         <h2 className="font-display text-3xl md:text-5xl font-bold max-w-3xl mx-auto leading-tight">
           {title}
