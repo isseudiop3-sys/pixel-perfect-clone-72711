@@ -22,7 +22,7 @@ function HomePage() {
       <section className="relative overflow-hidden">
         <img src={hero} alt="Drapeaux internationaux" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/55 to-[rgba(139,0,0,0.7)]" />
-        <div className="relative container-x py-16 md:py-24 text-white text-center">
+        <div className="relative container-x py-10 md:py-14 text-white text-center">
           <p className="font-display italic text-2xl md:text-3xl lg:text-4xl text-white leading-tight mb-3 max-w-3xl mx-auto">
             « Plus vous apprenez, plus vous découvrirez d'endroits. »
           </p>
