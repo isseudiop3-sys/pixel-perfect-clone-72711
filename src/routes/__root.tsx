@@ -114,9 +114,11 @@ function RootShell({ children }: { children: React.ReactNode }) {
 
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
+import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  useScrollReveal();
 
   return (
     <QueryClientProvider client={queryClient}>
