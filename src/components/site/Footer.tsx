@@ -65,8 +65,8 @@ export function Footer() {
         </div>
       </div>
       <div className="border-t border-white/10 py-3 relative">
-        <div className="container-x text-xs text-white/70 flex flex-wrap gap-2 justify-between">
-          <span>© {new Date().getFullYear()} CICOIDAF tous droits reservé — Le CICOIDAF est un bien privé enrigistré du COIDAF INTL.</span>
+        <div className="container-x text-xs text-white/70 flex flex-wrap gap-x-4 gap-y-2 justify-between">
+          <span>© {new Date().getFullYear()} CICOIDAF tous droits réservés — Le CICOIDAF est un bien privé enregistré du COIDAF INTL.</span>
           <span>Le développement du continent africain en marche</span>
         </div>
       </div>
