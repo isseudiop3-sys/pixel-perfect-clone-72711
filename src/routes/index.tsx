@@ -73,7 +73,7 @@ function HomePage() {
             <p className="mt-4 text-sm text-ink/60">— Comité d'organisation</p>
           </div>
           <div className="relative">
-            <img src={networking} alt="Réseautage" className="rounded-xl shadow-2xl w-full" loading="lazy" />
+            <img src={networking} alt="Réseautage" className="rounded-xl shadow-2xl w-full object-cover min-h-[300px] md:min-h-[500px]" loading="lazy" />
             <div className="absolute -bottom-6 -left-6 bg-primary text-primary-foreground p-6 rounded-xl shadow-xl max-w-xs hidden md:block">
               <p className="font-display text-lg font-semibold text-white leading-snug">Le développement du continent africain à portée de main.</p>
             </div>
