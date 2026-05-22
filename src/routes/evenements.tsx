@@ -117,7 +117,6 @@ function EvenementsPage() {
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              "Ay6lDFINqFw",
               "_aXA1jRXWnk",
               "wNULQ75pGjE",
               "_HhbxSL3Swc",
