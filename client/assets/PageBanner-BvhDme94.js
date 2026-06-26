@@ -1,0 +1,1 @@
+import{j as n}from"./index-BmiB56Ur.js";function i({title:r,subtitle:e,image:s}){return n.jsxs("section",{className:"page-banner",children:[n.jsx("img",{src:s,alt:"",loading:"eager"}),n.jsxs("div",{className:"banner-inner container-x",children:[n.jsx("h1",{children:r}),e&&n.jsx("p",{children:e})]})]})}export{i as P};
